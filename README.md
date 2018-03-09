@@ -1,3 +1,8 @@
+---
+> THIS LIBRARY NOT READY TO USE AT THE MOMENT.
+> THIS ALERT SIGN WILL BE REMOVED WHEN THIS READY TO USE
+---
+
 # lambdagram
 
 lambdagram is the library to help who want to create telegram bot with [official telegram bot api](https://core.telegram.org/bots/api) using webhook on AWS lambda.
