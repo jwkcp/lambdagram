@@ -21,7 +21,8 @@ _GET_WEBHOOK_URL = _BASE_URL + "getWebhookInfo"
 _DELETE_WEBHOOK_URL = _BASE_URL + "deleteWebhook"
 _GETME_URL = _BASE_URL + "getMe"
 
-class Lambdagram:
+
+class Bot:
     def __init__(self, token):
         """
         Create and initialize Lambdagram instance.

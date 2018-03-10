@@ -4,10 +4,11 @@ setup(
     name             = 'lambdagram',
     version          = '0.9',
     description      = 'telegram bot wrapper with webhook for aws lambda',
+    long_description = open('README.md').read(),
     author           = 'Jaewoong',
     author_email     = 'jaewoong.go@gmail.com',
     url              = 'https://github.com/jwkcp/lambdagram',
-    download_url     = 'https://github.com/jwkcp/lambdagram', # TODO: Fix url
+    download_url     = 'https://pypi.org/project/lambdagram/#files',
     install_requires = ['requests'],
     packages         = find_packages(exclude = ['docs', 'example']),
     keywords         = ['telegram', 'aws', 'lambda'],

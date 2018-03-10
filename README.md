@@ -1,6 +1,3 @@
-> THIS LIBRARY NOT READY TO USE AT THE MOMENT.
-> THIS ALERT SIGN WILL BE REMOVED WHEN THIS READY TO USE
-
 # lambdagram
 
 lambdagram is the library to help who want to create telegram bot with [official telegram bot api](https://core.telegram.org/bots/api) using webhook on AWS lambda.
@@ -29,15 +26,18 @@ pip install lamdbgram
 ## How to use
 
 ~~~
+from lambdagram.bot import Bot
+
+
 WEBHOOK = "https://YOUR-WEBHOOK-URL"
 TOKEN = "THE TOKEN YOU GOT FROM @BotFather"
   
 def lambda_handler(event, context): # Basic function signature on AWS lambda 
     
-    l = Lambdagram(TOKEN)
-    l.set_webhook(WEBHOOK)
+    bot = Bot(TOKEN)
+    bot.set_webhook(WEBHOOK)
     
-    l.send_message(event, "THE MESSAGE YOU WANT TO SEND")
+    bot.send_message(event, "THE MESSAGE YOU WANT TO SEND")
 ~~~
 
  
