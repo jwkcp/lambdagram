@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name             = 'lambdagram',
-    version          = '0.9',
+    version          = '0.9.2',
     description      = 'telegram bot wrapper with webhook for aws lambda',
     long_description = open('README.md').read(),
     author           = 'Jaewoong',

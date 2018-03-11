@@ -89,31 +89,17 @@ class Bot:
 
         return res
 
-    def send_message(self, event, msg):
+    def send_message(self, event, msg, webhook_url=None):
         """
-        Send message to the user who has text to your bot. (Efficient)
+        Send message to the user who has text to your bot.
 
-        !NOTICE: you must set webhook url before use this method using web browser or somethong you can request to set webhook
+        !NOTICE: To set the webhook_url parameter to None, you must set webhook url using web browser or somethong you can request to set webhook
         (https://api.telegram.org/bot{TOKEN}/setWebhook?url={WEBHOOKURL}, remove '{' and '}')
 
-        :param event: The object containing interaction information.
-        Refer to https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/python-context-object.html
-        Refer to https://jwkcp.github.io/2018/03/07/aws-lambda-event-object/ (In Korean)
-        :param msg: The message you want to reply to user
-        :return: Dictionary type containing results.
-        """
-        params = {'text': msg, 'chat_id': event.get("message").get('chat').get('id')}
-        res = requests.get(_SEND_MSG_URL.format(token=self.__token), params=params)
-
-        return res
-
-    def send_message(self, event, msg, webhook_url):
-        """
-        Send message to the user who has text to your bot. (Inefficient)
-
-        !NOTICE: I recommend you use 'send_message' method without webhook_url parameter.
-        Because this method set webhook url every single request.
-        This method just provided for beginners who are new to the telegram bot program implementation.
+        It is recommended...
+        to use this method without webhook_url parameter. It is more efficient way. \
+        If you pass webhook_url value, every single request will be sent to telegram server. It is quite inefficient.
+        It is just provided for beginners who are new to the telegram bot program implementation.
 
         :param event: The object containing interaction information.
         Refer to https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/python-context-object.html
@@ -122,7 +108,8 @@ class Bot:
         :param webhook_url: The url you want to set before you send message.
         :return: Dictionary type containing results.
         """
-        self.set_webhook(webhook_url)
+        if webhook_url:
+            self.set_webhook(webhook_url)
 
         params = {'text': msg, 'chat_id': event.get("message").get('chat').get('id')}
         res = requests.get(_SEND_MSG_URL.format(token=self.__token), params=params)
