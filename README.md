@@ -21,7 +21,9 @@ pip install lamdbgram
 
 ## Key function the lambdagram support
 
-- send_message
+- send_message(self, event, msg) - Efficient way, but you must set webhook before use this method using web browser.
+  (https://api.telegram.org/bot{TOKEN}/setWebhook?url={WEBHOOKURL}, remove '{' and '}')
+- send_message(self, event, msg, webhook_url) - Inefficient way, but it's useful for beginners.
 
 ## How to use
 
@@ -35,9 +37,22 @@ TOKEN = "THE TOKEN YOU GOT FROM @BotFather"
 def lambda_handler(event, context): # Basic function signature on AWS lambda 
     
     bot = Bot(TOKEN)
-    bot.set_webhook(WEBHOOK)
-    
     bot.send_message(event, "THE MESSAGE YOU WANT TO SEND")
+~~~
+  
+or
+  
+~~~
+from lambdagram.bot import Bot
+
+
+WEBHOOK = "https://YOUR-WEBHOOK-URL"
+TOKEN = "THE TOKEN YOU GOT FROM @BotFather"
+  
+def lambda_handler(event, context): # Basic function signature on AWS lambda 
+    
+    bot = Bot(TOKEN)
+    bot.send_message(event, "THE MESSAGE YOU WANT TO SEND", WEBHOOK)
 ~~~
 
  
