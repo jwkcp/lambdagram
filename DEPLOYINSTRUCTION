@@ -1,0 +1,6 @@
+This is a simple instruction to deploy library to PyPI
+
+1. Fix code
+2. Fix version number in setup.py
+3. python setup bdist_wheel
+4. twine upload dist/(Distribution file name)
