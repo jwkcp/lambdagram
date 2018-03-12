@@ -21,9 +21,9 @@ pip install lamdbgram
 
 ## Key function the lambdagram support
 
-- send_message(self, event, msg) - Efficient way, but you must set webhook before use this method using web browser.
+- send_message(self, event, msg, options...) - Efficient way, but you must set webhook before use this method using web browser.
   (https://api.telegram.org/bot{TOKEN}/setWebhook?url={WEBHOOKURL}, remove '{' and '}')
-- send_message(self, event, msg, webhook_url) - Inefficient way, but it's useful for beginners.
+- send_message(self, event, msg, webhook_url, options...) - Inefficient way, but it's useful for beginners.
 
 ## How to use
 

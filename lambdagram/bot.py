@@ -89,7 +89,15 @@ class Bot:
 
         return res
 
-    def send_message(self, event, msg, webhook_url=None):
+    def send_message(self
+                     , event
+                     , msg
+                     , webhook_url=None
+                     , parse_mode=None
+                     , disable_web_page_preview=None
+                     , disable_notification=None
+                     , reply_to_message_id=None
+                     , reply_markup=None):
         """
         Send message to the user who has text to your bot.
 
@@ -101,17 +109,36 @@ class Bot:
         If you pass webhook_url value, every single request will be sent to telegram server. It is quite inefficient.
         It is just provided for beginners who are new to the telegram bot program implementation.
 
+        Refer to detail information about parameters: https://core.telegram.org/bots/api#sendmessage
+
         :param event: The object containing interaction information.
         Refer to https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/python-context-object.html
         Refer to https://jwkcp.github.io/2018/03/07/aws-lambda-event-object/ (In Korean)
         :param msg: The message you want to reply to user
         :param webhook_url: The url you want to set before you send message.
+        :param parse_mode: Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
+        :param disable_web_page_preview: Disables link previews for links in this message
+        :param disable_notification: Sends the message silently. Users will receive a notification with no sound.
+        :param reply_to_message_id: If the message is a reply, ID of the original message
+        :param reply_markup: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
         :return: Dictionary type containing results.
         """
         if webhook_url:
             self.set_webhook(webhook_url)
 
         params = {'text': msg, 'chat_id': event.get("message").get('chat').get('id')}
+
+        if parse_mode:
+            params['parse_mode'] = parse_mode
+        if disable_web_page_preview:
+            params['disable_web_page_preview'] = disable_web_page_preview
+        if disable_notification:
+            params['disable_notification'] = disable_notification
+        if reply_to_message_id:
+            params['reply_to_message_id'] = reply_to_message_id
+        if reply_markup:
+            params['reply_markup'] = reply_markup
+
         res = requests.get(_SEND_MSG_URL.format(token=self.__token), params=params)
 
         return res
