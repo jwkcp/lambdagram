@@ -31,7 +31,6 @@ pip install lamdbgram
 from lambdagram.bot import Bot
 
 
-WEBHOOK = "https://YOUR-WEBHOOK-URL"
 TOKEN = "THE TOKEN YOU GOT FROM @BotFather"
   
 def lambda_handler(event, context): # Basic function signature on AWS lambda 
