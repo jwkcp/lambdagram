@@ -92,6 +92,7 @@ class Bot:
     def send_message(self
                      , event
                      , msg
+                     , chat_id=None
                      , webhook_url=None
                      , parse_mode=None
                      , disable_web_page_preview=None
@@ -115,6 +116,8 @@ class Bot:
         Refer to https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/python-context-object.html
         Refer to https://jwkcp.github.io/2018/03/07/aws-lambda-event-object/ (In Korean)
         :param msg: The message you want to reply to user
+        :param chat_id: Set this parameter to use push notification to channel you have created. When this value is set,
+        'event' parameter will be ignored. (e.g. @CHANNEL_ID_YOU_HAVE_SET)
         :param webhook_url: The url you want to set before you send message.
         :param parse_mode: Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
         :param disable_web_page_preview: Disables link previews for links in this message
@@ -126,7 +129,10 @@ class Bot:
         if webhook_url:
             self.set_webhook(webhook_url)
 
-        params = {'text': msg, 'chat_id': event.get("message").get('chat').get('id')}
+        if chat_id:
+            params = {'text': msg, 'chat_id': chat_id}
+        else:
+            params = {'text': msg, 'chat_id': event.get("message").get('chat').get('id')}
 
         if parse_mode:
             params['parse_mode'] = parse_mode
