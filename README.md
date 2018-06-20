@@ -9,7 +9,7 @@ Main target of this library is who want to create telegram bot using webhook sim
 ## Installing
 
 ~~~
-pip install lamdbgram
+pip install lambdagram
 ~~~  
 
 ## Telegram API support
