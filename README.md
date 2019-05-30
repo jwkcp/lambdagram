@@ -53,5 +53,7 @@ def lambda_handler(event, context): # Basic function signature on AWS lambda
     bot = Bot(TOKEN)
     bot.send_message(event, "THE MESSAGE YOU WANT TO SEND", WEBHOOK)
 ~~~
-
- 
+     
+## Additional information how to build telegram chatbot in Korean
+[서버없이 텔레그램 챗봇 만드는 방법과 순서](https://devlog.jwgo.kr/2018/03/07/how-to-create-telegrambot-in-python-using-aws-lambda/)     
+      
